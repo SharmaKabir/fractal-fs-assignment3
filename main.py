@@ -3,9 +3,6 @@ from pathlib import Path
 from application.request_service import RequestService
 from domain.exceptions import InvalidMenuChoiceError, InvalidPriorityError, RequestAlreadyResolvedError, RequestNotFoundError
 from infrastructure.file_repository import FileRepository
-
-
-
 PROJECT_ROOT = Path(__file__).resolve().parent
 
 
@@ -56,6 +53,13 @@ def search_request(service):
 
 
 def resolve_request(service):
+    username = input("Enter admin username: ").strip()
+    password = input("Enter admin password: ").strip()
+
+    if username != "admin" or password != "admin":
+        print("Access denied. Only admin can resolve requests.")
+        return
+
     request_id = input("Enter Request ID: ").strip()
     try:
         resolved = service.resolve_request(request_id)
@@ -80,7 +84,7 @@ def main():
         print("1. Create Service Request")
         print("2. View All Requests")
         print("3. Search Request")
-        print("4. Resolve Request")
+        print("4. Resolve Request (for admin only)")
         print("5. Exit")
 
         try:
