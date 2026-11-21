@@ -2,28 +2,17 @@ from .exceptions import InvalidPriorityError, RequestAlreadyResolvedError
 
 
 class ServiceRequest:
-    """A service request aggregate with its own priority and resolution rules."""
-
     VALID_PRIORITIES = ("LOW", "MEDIUM", "HIGH")
     VALID_STATUSES = ("OPEN", "RESOLVED")
 
     def __init__(self, request_id, employee_name, issue, priority, status="OPEN"):
-        try:
-            normalized_request_id = int(request_id)
-        except (TypeError, ValueError) as error:
-            raise ValueError("Request ID must be a positive number") from error
-        if normalized_request_id < 1:
-            raise ValueError("Request ID must be a positive number")
-        self.request_id = normalized_request_id
-
+        self.request_id = self._normalize_request_id(request_id)
         self.employee_name = self._required_text(employee_name, "Employee Name")
         self.issue = self._required_text(issue, "Issue")
-
         normalized_priority = priority.strip().upper()
         if normalized_priority not in self.VALID_PRIORITIES:
             raise InvalidPriorityError("Priority must be LOW, MEDIUM or HIGH")
         self.priority = normalized_priority
-
         normalized_status = status.strip().upper()
         if normalized_status not in self.VALID_STATUSES:
             raise ValueError("Status must be OPEN or RESOLVED")
@@ -34,6 +23,28 @@ class ServiceRequest:
         if not isinstance(value, str) or not value.strip():
             raise ValueError(f"{field_name} cannot be empty")
         return value.strip()
+
+    @staticmethod
+    def _normalize_request_id(value):
+        text = str(value).strip().upper()
+        if not text:
+            raise ValueError("Request ID must be in format SR<number>")
+
+        if text.startswith("SR"):
+            number_text = text[2:]
+        elif text.isdigit():
+            number_text = text
+        else:
+            raise ValueError("Request ID must be in format SR<number>")
+
+        if not number_text.isdigit() or int(number_text) < 1:
+            raise ValueError("Request ID must be in format SR<number>")
+
+        return f"SR{int(number_text)}"
+
+    @classmethod
+    def normalize_request_id(cls, value):
+        return cls._normalize_request_id(value)
 
     def resolve(self):
         #domain business thing to resolve
