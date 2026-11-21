@@ -80,7 +80,7 @@ def main():
         return
 
     while True:
-        print("\nSMART SERVICE DESK SYSTEM")
+        print("\n===SMART SERVICE DESK SYSTEM===")
         print("1. Create Service Request")
         print("2. View All Requests")
         print("3. Search Request")
