@@ -12,5 +12,26 @@
         "issue": "Mouse not working",
         "priority": "MEDIUM",
         "status": "RESOLVED"
+    },
+    {
+        "request_id": 3,
+        "employee_name": "Katya",
+        "issue": "WiFi not working in laptop",
+        "priority": "HIGH",
+        "status": "RESOLVED"
+    },
+    {
+        "request_id": 4,
+        "employee_name": "Arya",
+        "issue": "Laptop battery is not charging.",
+        "priority": "HIGH",
+        "status": "RESOLVED"
+    },
+    {
+        "request_id": 5,
+        "employee_name": "Sachin",
+        "issue": "Camera is not working.",
+        "priority": "LOW",
+        "status": "OPEN"
     }
 ]
