@@ -1,13 +1,14 @@
 # Smart Service Desk Management System
 
-## Notice
+## Notice(Additional functions added by me)
 Resolve Request is restricted to admin only.
 
 - Menu option 4 is marked as admin-only.
 - To resolve a ticket/request, login is required with:
   - Username: admin
   - Password: admin
-
+- Added testcases too, run the python file inside testcases folder
+  
 ## Overview
 This project is a command-line Smart Service Desk system built with layered architecture.
 It allows users to create, view, search, and resolve service requests (tickets), with data persisted in a JSON file.
