@@ -1,13 +1,13 @@
 [
     {
-        "request_id": "SR101",
+        "request_id": 1,
         "employee_name": "Rahul",
         "issue": "Laptop is not starting",
         "priority": "HIGH",
         "status": "RESOLVED"
     },
     {
-        "request_id": "SR102",
+        "request_id": 2,
         "employee_name": "Kabir",
         "issue": "Mouse not working",
         "priority": "MEDIUM",
